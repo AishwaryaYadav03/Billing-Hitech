@@ -1,0 +1,145 @@
+
+
+
+
+<div #invoicePDF style="position: absolute; left: -9999px; top: -9999px;">
+  <!-- Place your entire invoice HTML content here -->
+  <div class="bill">
+    <div class="header d-flex justify-content-between align-items-start p-3">
+      <div class="logo"><img src="/assets/image/logo.png" crossorigin="anonymous" alt="logo" />
+      </div>
+      <div class="header-details flex-grow-1 text-left">
+        <h5><b>Hi-tech Furniture & Kitchen</b>
+          <p><b>Trolleys</b></p>
+        </h5>
+        <p>70E, Shahupuri 3rd Lane, Kolhapur, Maharashtra</p>
+        <p><b>Mobile :</b> 9923449193</p>
+        <p><b>Email:</b> sadanandsutar25&#64;gmail.com</p>
+      </div>
+      <div class="bill-details ml-3 text-right">
+        <p><b>BILL OF SUPPLY</b>&nbsp;
+          <span class="small border p-1 text-muted float-right">ORIGINAL FOR RECIPIENT</span>
+        </p>
+        <p class="inv">Invoice No:{{ invoiceData.invoiceId }}</p>
+        <p class="inv">Invoice Date: {{ invoiceData.invoiceDate }}</p>
+        <p class="inv">Due Date: {{ invoiceData.dueDate }}</p>
+      </div>
+    </div>
+
+    <hr style="border: 1px solid black;">
+    <div class="bill-to">
+      <h4 style="background-color: rgb(230, 122, 122);">BILL TO</h4>
+      <p style="margin-top: 10px;">Name: <b>{{ invoiceData.customerName }}</b></p>
+      <p style="float: right;">Mobile: <b>{{ invoiceData.customerMobile }}</b></p>
+      <p>Address: <b>{{ invoiceData.customerAddress }}</b></p>
+    </div>
+
+    <div class="col">
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">S.No.</th>
+              <th scope="col">DESC</th>
+              <th scope="col">SIZE</th>
+              <th scope="col">SQ.FOOT</th>
+              <th scope="col">QTY</th>
+              <th scope="col">RATE</th>
+              <th *ngIf="hasDiscountDataForItems()">DiscountAmount</th>
+              <th *ngIf="hasDiscountDataForItems()">DiscountAmountPercentage</th>
+             
+              <th scope="col">AMOUNT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.description }}</td>
+              <td>{{ item.size }}</td>
+              <td>{{ item.squareFt }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.rate }}</td>
+              <td *ngIf="hasDiscountDataForItems()">{{ item.discountAmount }}</td>
+              <td *ngIf="hasDiscountDataForItems()">{{ item.discountAmountPercentage }}</td>
+          
+              <td>{{ item.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="terms-and-total">
+        <div class="terms">
+          <h5>TERMS AND CONDITIONS</h5>
+          <ol>
+            <li *ngFor="let term of invoiceData.termsAndConditions.split('\n')">
+              {{ term }}
+            </li>
+          </ol>
+        </div>
+
+        <div class="total">
+          <p *ngIf="hasGSTData()"><b>CGST: <b>{{ invoiceData.cgst }}</b></b></p>
+          <hr *ngIf="hasGSTData()">
+          <p *ngIf="hasGSTData()"><b>SGST: <b>{{ invoiceData.sgst }}</b></b></p>
+          <hr *ngIf="hasGSTData()">
+          <p *ngIf="hasGSTData()"><b>IGST: <b>{{ invoiceData.igst }}</b></b></p>
+          <hr *ngIf="hasGSTData()">
+          <p><b>TOTAL AMOUNT: <b>{{ invoiceData.totalAmount }}</b></b></p>
+          <hr>
+          <!-- Invoice-level discount display -->
+  <div *ngIf="hasDiscountDataForInvoice()">
+    <p *ngIf="invoiceData.discountAmount"><b>Discount Amount:</b> {{ invoiceData.discountAmount }}</p>
+    <hr *ngIf="invoiceData.discountAmount">
+    <p *ngIf="invoiceData.discountAmountPercentage"><b>Discount Percentage:</b> {{ invoiceData.discountAmountPercentage }}</p>
+    <hr *ngIf="invoiceData.discountAmountPercentage">
+  </div>
+          
+          <p>Received AMOUNT: <b>{{ invoiceData.receivedAmount }}</b></p>
+          <hr>
+          <p>Pending AMOUNT: <b>{{ invoiceData.pendingAmount }}</b></p>
+        </div>
+      </div>
+
+      <div class="note-total">
+        <p>NOTE+: <b>{{ invoiceData.note }}</b></p><br>
+        <p style="text-align: right;"><b>Total Amount (in words):</b> {{ invoiceData.totalAmountInWords }}</p>
+      </div>
+
+      <div class="signature-section">
+        <p> <a href="https://hitechfurnitureandkitchentrolleys.in">https://hitechfurnitureandkitchentrolleys.in</a></p>
+        <div>
+          <img src="assets/image/sign-removebg-preview.png" alt="Signature" class="signature-img">
+          <p class="mt-2">Authorized Signature For</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Make sure all images are inside the assets folder and have correct paths -->
+</div>
+
+<!-- Button to generate and preview PDF -->
+<!-- <button (click)="generateAndViewPDF()">Generate & View PDF</button> -->
+
+<!-- PDF Viewer -->
+<ngx-extended-pdf-viewer
+  *ngIf="pdfSrc"
+  [src]="pdfSrc"
+  [filenameForDownload]="'invoice.pdf'"
+  useBrowserLocale="true"
+  height="650px"
+  [showSidebarButton]="false"
+  [showDownloadButton]="true"
+></ngx-extended-pdf-viewer>
+
+
+
+
+<div class="d-flex justify-content-center mt-3">
+  <button class="btn btn-success d-flex align-items-center gap-2" (click)="sharePDF()">
+    <i class="bi bi-whatsapp"></i> Share on WhatsApp
+  </button>
+</div>
+
+
+

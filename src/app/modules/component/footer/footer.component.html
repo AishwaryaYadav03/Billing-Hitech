@@ -1,0 +1,71 @@
+<div #invoicePDF id="invoice-content">
+  <div class="bill">
+    <div class="header">
+      <div class="logo"><img src="assets/img/logo.png" alt="logo"></div>
+      <div class="header-details mr-auto">
+        <h5><b>Hi-tech Furniture & kitchen</b><p><b>Trolleys</b></p></h5>
+        <p>70E, Shahupuri 3rd Lane, Kolhapur, Maharashtra</p>
+        <p><b>Mobile:</b> 9923449193</p>
+        <p><b>Email:</b> sadanandsutar25&#64;gmail.com</p>
+      </div>
+      <div class="bill-details ml-auto">
+        <p><b>BILL OF SUPPLY</b></p>
+        <p><span class="inv">Invoice No </span> <input type="text" [(ngModel)]="invoiceData.invoiceId"></p>
+        <p><span class="inv">Invoice Date </span><input type="date" [(ngModel)]="invoiceData.invoiceDate"></p>
+        <p><span class="inv">Due Date </span><input type="date" [(ngModel)]="invoiceData.dueDate"></p>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <div class="bill-to">
+      <h4 style="background-color: rgb(230, 122, 122);">BILL TO</h4>
+      <p>Name: <input type="text" [(ngModel)]="invoiceData.customerName"></p>
+      <p>Mobile: <input type="text" [(ngModel)]="invoiceData.customerMobile"></p>
+      <p>Address: <input type="text" [(ngModel)]="invoiceData.customerAddress"></p>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Description</th>
+            <th>SQ.FOOT</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.squareFt }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.rate }}</td>
+            <td>{{ item.amount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="total">
+      <p>Taxable Amount: <input type="text" [(ngModel)]="invoiceData.taxableAmount"></p>
+      <p>Total Amount: <input type="text" [(ngModel)]="invoiceData.totalAmount" readonly></p>
+      <p>Received Amount: <input type="text" [(ngModel)]="invoiceData.receivedAmount"></p>
+      <p>Pending Amount: <input type="text" [(ngModel)]="invoiceData.pendingAmount" readonly></p>
+      <p>Total Amount (in words): <input type="text" [value]="invoiceData.totalAmountInWords" readonly></p>
+    </div>
+
+    <div class="terms">
+      <h5>TERMS AND CONDITIONS</h5>
+      <textarea [(ngModel)]="invoiceData.termsAndConditions"></textarea>
+    </div>
+
+    <div class="signature-section">
+      <p><a href="https://hitechfurnitureandkitchentrolleys.in">https://hitechfurnitureandkitchentrolleys.in</a></p>
+      <div class="signature-text">Authorized Signature</div>
+    </div>
+  </div>
+</div>

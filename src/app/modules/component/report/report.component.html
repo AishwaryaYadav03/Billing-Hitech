@@ -1,0 +1,125 @@
+
+  <h4 class="table-title text-center mt-4 fw-bold">Invoice Summary</h4> <!-- Added Title -->
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. customerName " #input>
+  </mat-form-field>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Table Columns (Invoice ID, Date, Customer Name, etc.) -->
+    <ng-container matColumnDef="srNo">
+      <th mat-header-cell *matHeaderCellDef> Sr. No </th>
+      <td mat-cell *matCellDef="let row; let i = index"> {{ i + 1 }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gstNumber">
+      <th mat-header-cell *matHeaderCellDef> GST Number </th>
+      <td mat-cell *matCellDef="let row"> {{ row.gstNumber }} </td>
+    </ng-container>
+    
+
+    <ng-container matColumnDef="invoiceDate">
+      <th mat-header-cell *matHeaderCellDef> Invoice Date </th>
+      <td mat-cell *matCellDef="let row"> {{ row.invoiceDate }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dueDate">
+      <th mat-header-cell *matHeaderCellDef> Due Date </th>
+      <td mat-cell *matCellDef="let row"> {{ row.dueDate }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+      <td mat-cell *matCellDef="let row"> {{ row.customerName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerAddress">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let row"> {{ row.customerAddress }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerMobile">
+      <th mat-header-cell *matHeaderCellDef> Mobile </th>
+      <td mat-cell *matCellDef="let row"> {{ row.customerMobile }} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="totalAmount">
+      <th mat-header-cell *matHeaderCellDef> Total Amount </th>
+      <td mat-cell *matCellDef="let row"> {{ row.totalAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="receivedAmount">
+      <th mat-header-cell *matHeaderCellDef> Received Amount </th>
+      <td mat-cell *matCellDef="let row"> {{ row.receivedAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pendingAmount">
+      <th mat-header-cell *matHeaderCellDef> Pending Amount </th>
+      <td mat-cell *matCellDef="let row"> {{ row.pendingAmount }} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="totalAmountInWords">
+      <th mat-header-cell *matHeaderCellDef> Amount in Words </th>
+      <td mat-cell *matCellDef="let row"> {{ row.totalAmountInWords }} </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="cgst">
+      <th mat-header-cell *matHeaderCellDef> CGST </th>
+      <td mat-cell *matCellDef="let row"> {{ row.cgst }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sgst">
+      <th mat-header-cell *matHeaderCellDef> SGST </th>
+      <td mat-cell *matCellDef="let row"> {{ row.sgst }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="igst">
+      <th mat-header-cell *matHeaderCellDef> IGST </th>
+      <td mat-cell *matCellDef="let row"> {{ row.igst }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="discountAmount">
+      <th mat-header-cell *matHeaderCellDef> Discount Amount </th>
+      <td mat-cell *matCellDef="let row"> {{ row.discountAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="discountAmountPercentage">
+      <th mat-header-cell *matHeaderCellDef> discountAmountPercentage </th>
+      <td mat-cell *matCellDef="let row"> {{ row.discountAmountPercentage }} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="termsAndConditions">
+      <th mat-header-cell *matHeaderCellDef> Terms & Conditions </th>
+      <td mat-cell *matCellDef="let row"> {{ row.termsAndConditions }} </td>
+    </ng-container> -->
+
+    <!-- <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef> Note </th>
+      <td mat-cell *matCellDef="let row"> {{ row.note }} </td>
+    </ng-container> -->
+
+    <!-- Actions -->
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let row">
+        <div class="action-icons">
+          <mat-icon class="edit-icon" (click)="onEdit(row)">edit</mat-icon>
+          <mat-icon class="delete-icon" (click)="onDelete(row.invoiceId)">delete</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+    
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+</div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+

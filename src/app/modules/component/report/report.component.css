@@ -1,0 +1,58 @@
+/* Ensures the table container scrolls horizontally on smaller screens */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Ensures the table does not break layout on mobile */
+  .table-responsive {
+    min-width: 800px; /* Adjust based on your column count */
+    overflow-x: auto;
+    display: block;
+  }
+  
+  /* Full width form field */
+  .full-width {
+    width: 100%;
+  }
+
+  .action-icons {
+    display: flex;
+    align-items: center;  /* Optional: vertically center the buttons */
+    gap: 10px;            /* Adjust spacing between buttons as needed */
+  }
+  
+  .edit-icon {
+    color: #3f51b5; /* Primary blue color */
+  }
+  
+  .delete-icon {
+    color: #f44336; /* Red color */
+  }
+  
+  /* Remove any background/border from the icon buttons if needed */
+  button.mat-icon-button {
+    background: none;
+    box-shadow: none;
+  }
+  
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .custom-table {
+      font-size: 12px; /* Reduce font size for smaller screens */
+    }
+  
+    th, td {
+      padding: 8px; /* Reduce padding */
+    }
+  
+    mat-form-field {
+      width: 100%; /* Full width for input field */
+    }
+  
+
+  }
+
+  
+  

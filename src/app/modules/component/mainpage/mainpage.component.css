@@ -1,0 +1,184 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  .bill {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: auto;
+  }
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+  
+  
+  }
+  .header-details, .bill-details {
+    flex: 1;
+    margin-left: 20px;
+  }
+  .header-details h5 {
+    color: brown;
+  }
+  .header-details h5, .header-details p {
+    margin: 0;
+  }
+  .bill-details p {
+    display: flex;
+    margin: 0;
+    margin-top: 5px;
+  }
+  .bill-details .inv{
+    flex: 0 0 133px; }/* Align input boxes*/
+  
+  
+  
+  .bill-to h4 {
+  
+    background-color: rgb(230, 122, 122);
+    padding: 0 5px;
+    display: inline;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table th, .table td {
+    border: 1px ridge  #887d7d;
+    padding: 8px;
+  }
+  .table thead th, .table tfoot td {
+    background-color: rgb(230, 122, 122);
+  }
+  
+  .terms-and-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  .terms, .total {
+    flex: 1;
+  }
+  .total {
+    text-align: left;
+  }
+  .terms h5, .terms p, .total p {
+    margin: 5px 0;
+  }
+  
+  
+  
+  .signature {
+    width: 200px;
+    height: 100px;
+    background-color: #ddd;
+    text-align: center;
+    line-height: 100px;
+  }
+  
+  
+  .note-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .signature-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 40px;
+  }
+  
+  .signature-section a {
+    margin-bottom: 10px;
+  }
+  .header-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    gap: 15px; /* Adds spacing between image and text */
+}
+
+.logo img {
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.header-details {
+    flex: 1; /* Allows text to take remaining space */
+}
+
+.small-box {
+  padding: 6px 15px; /* Adjust padding for a smaller box */
+  border-radius: 5px; /* Optional: Rounds the corners */
+  font-size: 14px; /* Makes the text slightly smaller */
+  background-color: rgb(230, 122, 122);
+}
+.signature-img {
+  width: 150px; /* Adjust the size as needed */
+  height: auto; /* Keeps aspect ratio */
+}
+
+.text-end p {
+  font-weight: bold;
+  font-size: 12px; /* Adjust text size */
+}
+/* Blur effect */
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Hide initially */
+.hidden {
+  display: none;
+}
+
+/* Spinner animation */
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+.additional-space {
+  margin-bottom: 200px; /* Adjust this value to whatever space you need */
+}
+@media (max-width: 768px) {
+  .text-end {
+    text-align: center !important; /* Center align the signature image on smaller screens */
+  }
+}

@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  .bill {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: auto;
+  }
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  
+  }
+  .logo {
+    width: 150px;
+    height: 100px;
+  
+  
+  }
+  .header-details, .bill-details {
+    flex: 1;
+    margin-left: 30px;
+  }
+  .header-details h5 {
+    color: brown;
+  }
+  .header-details h5, .header-details p {
+    margin: 0;
+  }
+  .bill-details p {
+    display: flex;
+    margin: 0;
+    margin-top: 5px;
+  }
+  .bill-details .inv{
+    flex: 0 0 133px; }/* Align input boxes*/
+  
+  
+  
+  .bill-to h4 {
+  
+    background-color: rgb(230, 122, 122);
+    padding: 0 5px;
+    display: inline;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table th, .table td {
+    border: 1px solid #887d7d;
+    padding: 8px;
+  }
+  .table thead th, .table tfoot td {
+    background-color: rgb(230, 122, 122);
+  }
+  
+  .terms-and-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  .terms, .total {
+    flex: 1;
+  }
+  .total {
+    text-align: left;
+  }
+  .terms h5, .terms p, .total p {
+    margin: 5px 0;
+  }
+  
+  
+  
+  .signature {
+    width: 200px;
+    height: 100px;
+    background-color: #ddd;
+    text-align: center;
+    line-height: 100px;
+  }
+  
+  
+  .note-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .signature-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 40px;
+  }
+  
+  .signature-section a {
+    margin-bottom: 10px;
+  }
+  .header-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    gap: 15px; /* Adds spacing between image and text */
+}
+
+.logo img {
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.header-details {
+    flex: 1; /* Allows text to take remaining space */
+}
+
+.small-box {
+  padding: 6px 15px; /* Adjust padding for a smaller box */
+  border-radius: 5px; /* Optional: Rounds the corners */
+  font-size: 14px; /* Makes the text slightly smaller */
+  background-color: rgb(230, 122, 122);
+}
+.signature-img {
+  width: 150px; /* Adjust the size as needed */
+  height: auto; /* Keeps aspect ratio */
+}
+
+.text-end p {
+  font-weight: bold;
+  font-size: 14px; /* Adjust text size */
+}
+
+
