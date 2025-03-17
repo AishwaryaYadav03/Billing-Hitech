@@ -1,5 +1,22 @@
 
 
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <!-- Download Button -->
+    <div class="col-auto mb-3">
+      <button class="btn btn-primary d-flex align-items-center gap-2 px-3 py-2" (click)="downloadPDF()">
+        <i class="bi bi-download"></i> Download PDF
+      </button>
+    </div>
+
+    <!-- WhatsApp Share Button -->
+    <div class="col-auto mb-3">
+      <button  class="btn btn-success d-flex align-items-center gap-2 px-3 py-2" (click)="sharePDF()">
+        <i class="bi bi-whatsapp"></i> Share on WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
 
 
 <div #invoicePDF style="position: absolute; left: -9999px; top: -9999px;">
@@ -135,11 +152,7 @@
 
 
 
-<div class="d-flex justify-content-center mt-3">
-  <button class="btn btn-success d-flex align-items-center gap-2" (click)="sharePDF()">
-    <i class="bi bi-whatsapp"></i> Share on WhatsApp
-  </button>
-</div>
+
 
 
 

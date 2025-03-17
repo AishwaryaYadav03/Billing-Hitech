@@ -182,4 +182,11 @@ body {
     text-align: center !important; /* Center align the signature image on smaller screens */
   }
 }
+button.btn-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 10px 20px;
+}
 

@@ -13,7 +13,7 @@ import { saveAs } from 'file-saver';
 export class PdfPreviewComponent {
   @ViewChild('invoicePDF', { static: false }) invoicePDF!: ElementRef;
   pdfSrc: string | null = null;
-
+  
   invoiceData: any = {
     invoiceId: '',
     gstNumber: '',
@@ -111,38 +111,78 @@ export class PdfPreviewComponent {
 
         document.body.removeChild(clonedElement);
       });
-    }, 500);
+    }, 200);
   }
 
+
+  // async sharePDF() {
+  //   const element = this.invoicePDF.nativeElement;
+
+
+  //   const canvas = await html2canvas(element, { scale: 2 });
+  //   const imgData = canvas.toDataURL('image/png');
+  //   const pdf = new jsPDF('p', 'mm', 'a4');
+  //   const imgWidth = 210;
+  //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+  //   const pdfBlob = pdf.output('blob');
+
+
+  //   const fileName = `invoice_${new Date().getTime()}.pdf`;
+  //   const file = new File([pdfBlob], fileName, { type: 'application/pdf' });
+
+  //   // Save the file using FileSaver
+  //   // saveAs(file);
+
+
+  //   setTimeout(() => {
+  //     const fileURL = window.URL.createObjectURL(pdfBlob);
+
+
+  //     window.location.href = `whatsapp://send?text=Here is your invoice.&attachment=${fileURL}`;
+  //   }, 1000);
+  // }
+
+  private oldPdfUrl: string | null = null; // Track previous URL
 
   async sharePDF() {
     const element = this.invoicePDF.nativeElement;
-
-
-    const canvas = await html2canvas(element, { scale: 2 });
-    const imgData = canvas.toDataURL('image/png');
+    const canvas = await html2canvas(element, { scale: 1.5 }); // Reduce scale for faster rendering
+    const imgData = canvas.toDataURL('image/jpeg', 0.7); // Use JPEG for smaller size
+  
     const pdf = new jsPDF('p', 'mm', 'a4');
     const imgWidth = 210;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+  
+    // Convert PDF to Blob
     const pdfBlob = pdf.output('blob');
 
+    // ✅ Clear old Blob URL to prevent memory leaks
+    if (this.oldPdfUrl) {
+      URL.revokeObjectURL(this.oldPdfUrl);
+    }
 
-    const fileName = `invoice_${new Date().getTime()}.pdf`;
-    const file = new File([pdfBlob], fileName, { type: 'application/pdf' });
+    // Generate new Blob URL
+    this.oldPdfUrl = URL.createObjectURL(pdfBlob);
+  
+    const file = new File([pdfBlob], 'invoice.pdf', { type: 'application/pdf' });
 
-    // Save the file using FileSaver
-    // saveAs(file);
-
-
-    setTimeout(() => {
-      const fileURL = window.URL.createObjectURL(pdfBlob);
-
-
-      window.location.href = `whatsapp://send?text=Here is your invoice.&attachment=${fileURL}`;
-    }, 1000);
+    if (navigator.share) {
+      navigator.share({
+        title: 'Invoice',
+        text: 'Here is your invoice.',
+        files: [file],
+      }).catch((error) => console.log('Sharing failed:', error));
+    } else {
+      alert('Web Share API not supported on this device.');
+    }
   }
+  
+  
+
+  
 
   hasGSTData(): boolean {
     return !!(this.invoiceData?.cgst || this.invoiceData?.sgst || this.invoiceData?.igst);
